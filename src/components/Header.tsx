@@ -2,6 +2,7 @@
 
 import { signIn, signOut, useSession } from "next-auth/react";
 import { Button } from "@/components/ui/button";
+import Image from "next/image";
 
 export default function Header() {
   const { data: session } = useSession();
@@ -12,8 +13,8 @@ export default function Header() {
       <div className="flex items-center gap-3">
         {session ? (
           <div className="flex items-center gap-3">
-            <img src={session.user?.image ?? "/default-avatar.png"} alt="Profile" width={40} height={40} />
-            <span>{session.user?.email}</span>
+            <Image src={session.user?.image!} alt="Profile" width={40} height={40} />
+            <span className="hidden md:flex">{session.user?.email}</span>
             <Button onClick={() => signOut()}>Sign out</Button>
           </div>
         ) : (

@@ -1,5 +1,4 @@
-import type { NextApiRequest, NextApiResponse } from "next";
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 
 export function isValidID(id: string): boolean {
   return id.length === 46 && id.startsWith("Qm");
@@ -76,7 +75,7 @@ const QUERY_BODY = `{
   node
 }`;
 
-export async function GET(req: NextApiRequest, res: NextApiResponse) {
+export async function GET(req: NextRequest) {
   const { searchParams } = new URL(req.url as string);
 
   // Access the query parameter
